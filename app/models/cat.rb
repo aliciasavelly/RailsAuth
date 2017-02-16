@@ -16,7 +16,9 @@ require 'action_view'
 
 class Cat < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
-
+  belongs_to :owner,
+  foreign_key: :user_id,
+  class_name: :User
   CAT_COLORS = %w(black white orange brown)
 
   has_many(
@@ -30,6 +32,7 @@ class Cat < ActiveRecord::Base
     :color,
     :name,
     :sex,
+    :owner,
     presence: true
   )
 
